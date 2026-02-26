@@ -32,7 +32,7 @@ In this module we will take the ServiceNow Close Incident workflow and add it as
     - **Workflow Name** - `tool-ServiceNow-CloseIncident`
     - Click **Show all**
 
-    ![Configure Call Workflow](./images/11_06_configure_call_workflow.png "configure call workflow")
+    ![Configure Call Workflow](./images/13_10_configure_call_workflow_parameters.png "configure call workflow")
 
 1. Configure the Tool action
     - Rename the tool to `Close Service Now Incident`

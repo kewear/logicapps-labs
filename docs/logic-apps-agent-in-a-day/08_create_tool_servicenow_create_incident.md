@@ -82,45 +82,16 @@ In this module we will create a stateful workflow to create a ServiceNow inciden
 
     - Configure the Connection:
         - **Connection Name:** `connServiceNowDev`
-        - **Authentication Type:** `Use Oauth2`
-        - **Instance Name:**  [obtained from Module 2]
+        - **Authentication Type:** `Basic Authentication`
+        - **Instance Name:**  [obtained from Module 4]
             - example: `devXXXXXX` 
             - can also be found in the URL of your developer instance https://[instance name].service-now.com
-    - **ClientId:**  [obtained from Module 2 - ]
-            - example: 924168e8304a2210cc58c3f34c9b62f3
-        - Click `Sign in` 
+    - **Username:**  [obtained from Module 4 - ]
+            - example: admin
+    - **Password:**  [obtained from Module 4 - ]
+        - Click `Create new` 
 
         ![Configure ServiceNow Connection](./images//08_09_servicenow_connection_configuration.png)
-
-    - **NOTE** you **may** receive the following error. 
-
-        ![ServiceNow Connection Error - Invalid Redirect URI](./images/08_10_servicenow_connection_error_invalid_redirect_uri.png "servicenow connection error invalid redirect uri")
-
-        If you receive this error you will need to:
-        - Copy the URL into a text editor
-        - note the `redirect_uri` parameter in the query string  
-            - redirect_uri=https%3a%2f%2flogic-apis-canadacentral.consent.azure-apim.net%2fredirect
-        - convert the URL Encoded ASCII characters back as follows
-            - Replace %3a with :
-            - Replace %2f with /
-        - in the above example we would have resolved to https://logic-apis-canadacentral.consent.azure-apim.net/redirect 
-
-            - Update the Application Registration entry created in the [Module 4 - Prerequisites - ServiceNow setup](04_servicenow_dev_sandbox.md).
-        Add the Redirect URL
-
-        ![ServiceNow Connection Error - Invalid Redirect URI](./images/08_10_servicenow_connection_error_invalid_redirect_uri.png "servicenow connection error invalid redirect uri")
-
-    - Close the browser popup window
-
-    - Click the `Sign In` button  again 
-        
-        **Note** please check for errors in the upper right hand corner of your browser. Some browsers may block popups.
-    
-        ![ServiceNow Connection - Sign In](./images/08_11_servicenow_connection_sign_in_after_error.png "service now connection sign in")
-    
-1. Click `Allow` granting Logic Apps permission to connect to your ServiceNow instance 
-
-    ![Service Now Grant Permissions](./images/08_12_servicenow_connection_all_permissions.png "service now grant permissions")
 
 1. Configure the List Records Action as follows
     - **Record Type:** `Group`
@@ -128,6 +99,12 @@ In this module we will create a stateful workflow to create a ServiceNow inciden
     - **Query:** `name=@{triggerBody()?['AssignmentGroup']}`
 
     ![ServiceNow List Action Configuration](./images/08_14_servicenow_list_records_configuraiton.png "servicenow list records configuration")
+
+
+    **Note:** ServiceNow has two types of Groups that are available in this dropdown. Unfortunately, the ordering in the dropdown is non-deterministic. To ensure that you have the right Group selected, click on the Code view tab and ensure that 'sys_usr_group' is selected. If you see one that references CMDB, you have the wrong instance and should select the other value from the dropdown.
+
+    ![List Groups troubleshooting](./images/08_13_servicenow_list_records_troubleshooting.png)
+    
 
 1. Add a new action
 
