@@ -19,7 +19,7 @@ A ServiceNow environment will be required to enable our integration to create an
 
     ![ServiceNow ID Signup](./images/02_01_signup_servicenow_id.png "Signup")
 
-1. You will receive an Email Verification Code:
+1. You will receive a verification email:
 
     ![Email Verification Code](./images/02_02_email_verificaiton_code.png "Verify your account")
 
@@ -27,43 +27,24 @@ A ServiceNow environment will be required to enable our integration to create an
 
      https://developer.servicenow.com/dev.do
 
-    (if prompted, sign in using the account created above)
+    If prompted, sign in using the account created above. You may receive an email from ServiceNow with a one time verification code. Multi-factor authentication is not required for this lab. You may skip that step.
 
-1. Request a Developer Instance
+1. When prompted to tune your experience, you can select "No, I need a guided experience." You do not have to specifify job responsibilities. Agree to terms of use and click on Finish Setup
+
+1. Request a Developer Instance, by clicking on the Request Instance button in the upper right hand corner.
+      ![Request Developer Instance](./images/02_03_request_developer_instance_a.png)
+
+1. Select the latest ServiceNow release.
 
     ![Request Developer Instance](./images/02_03_request_developer_instance.png)
+
+1. Your instance will now get created, this step may take 5-10 minutes. You should receive an email when it is completed and your browser should re-direct to the following screen. Capture the following information in notepad: Dev Instance Name, Username, Password.
+    ![Request Developer Instance](./images/02_04_DevInstanceDetails.png)
+   
 
 1. Click the Start Building link:
 
     ![Start building](./images/02_04_start_building.png)
 
-## Configure OAuth Authentication 
-We will need to configure an OAuth API endpoint to enable our logic apps to authenticate to our ServiceNow instance
+1. Your ServiceNow instance has now been setup, and you may proceed to the next module.
 
-1. Navigate to the `OAuth -> Inbound Integrations` section
-    - Using the top navigation menu
-      - Select `All`
-      - Enter `OAuth` in the search box
-      - Select `Inbound Integrations`
-
-      ![Menu OAuth Inbound Integrations](./images/02_05_menu_inbound_integrations.png "menu oauth inbound integrations")
-
-1. Select `New Integration`
-
-    ![New Integration](./images/02_06_inbound_integrations_new_integration.png "new integration")
-
-
-1. Select `OAuth - Authorization code grant`
-  
-    ![Create OAuth Authorization Grant](./images/02_07_create_oauth_authorization_grant.png "create oauth api endpoint")
-
-1. Configure the OAuth API endpoint as follows:
-    - **Name:** `logic-apps-client`
-    - **Redirect URL:** https://logic-apis-northcentralus.consent.azure-apim.net/redirect
-     
-       (**note:** your redirect URL will depend on the region you are deployment your Azure Logic Apps Instance. If you deployed to a different region, you will need to update your **Redirect URL:  https://logic-apis-{azure-region}.consent.azure-apim.net/redirect**)
-     - Click `Submit`
-
-    ![Configure OAuth API Endpoint](./images/02_08_oauth_authorization_code_grant_config.png "configure oauth api endpoint")
-
-1. Save the `Client ID`, `Client Secret` and the `Instance Name` created in this module for later steps when configuring the Logic Apps connection to ServiceNow
